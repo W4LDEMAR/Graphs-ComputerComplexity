@@ -1,10 +1,5 @@
 # Practice 1 
 # G R A P H S
-# 500 CIB
-# Flores Arenas Marcos Fabian
-# Ordoñez Contreras Elias
-# Sosa Hernandez Saul Waldemar
-# Soto Natera Sebastian
 
 import os
 from collections import defaultdict

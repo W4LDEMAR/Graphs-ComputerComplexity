@@ -1,11 +1,6 @@
     COMPUTATIONAL THEORY AND COMPLEXITY
 
 PRACTICE 1: GRAPHS
-500 CIB
-Flores Arenas Marcos Fabian
-Ordoñez Contreras Elias
-Sosa Hernandez Saul Waldemar
-Soto Natera Sebastian
 
 The python file reads the "input.txt" file located on the same directory.
 The file needs to contain:
