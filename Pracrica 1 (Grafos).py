@@ -3,6 +3,8 @@
 
 import os
 from collections import defaultdict
+import numpy as np
+
 
 class Graph:
     def __init__(self, n_nodes, nodes_names, edges):
@@ -18,6 +20,36 @@ class Graph:
         
     def add_edge(self, u, v):
         self.graph[u].append(v)
+
+    def build_adjacency_matrix(self):
+        # Sort nodes to maintain order
+        self.nodes_names.sort()
+
+        # Create a mapping from node to index
+        node_index = {node: i for i, node in enumerate(self.nodes_names)}
+        n = len(self.nodes_names)
+
+        # Initialize the adjacency matrix with zeros
+        adj_matrix = np.zeros((n, n), dtype=int)
+        
+        # Fill the adjacency matrix
+        for u in self.graph:
+            for v in self.graph[u]:
+                adj_matrix[node_index[u]][node_index[v]] = 1
+
+        return adj_matrix
+
+    def print_adjacency_matrix(self):
+        adj_matrix = self.build_adjacency_matrix()
+
+        self.nodes_names.sort()
+        
+        # Print matrix heders
+        print("     ", "   ".join(f"{node:>2}" for node in self.nodes_names))
+        
+        for i, row in enumerate(adj_matrix):
+            # Print the row with node labels
+            print(f"{self.nodes_names[i]:>2}    ", "    ".join(map(str, row)))
 
     def find_all_paths(self, start, end, path=None, visited=None):
         if path is None:
@@ -143,8 +175,8 @@ if __name__ == "__main__":
                 print("\n\t Press any key to continue.")
                 os.system("pause")
             elif option == 3:
-                print("Adjacency List:")
-                graph.to_string()
+                print("Adjacency Matrix:")
+                graph.print_adjacency_matrix()
                 print("\n\t Press any key to continue.")
                 os.system("pause")
             elif option == 4:
@@ -152,7 +184,10 @@ if __name__ == "__main__":
                 print(f" Their names:")
                 for i in graph.nodes_names:
                     print(f"{i}, ", end="")
+                print("\n The graph's adjacency matrix:")
+                graph.print_adjacency_matrix()
                 print("\n The graph's adjacency list:")
                 graph.to_string()
                 print("\n\t Press any key to continue.")
                 os.system("pause")
+                
